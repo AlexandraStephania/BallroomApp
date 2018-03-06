@@ -1,0 +1,19 @@
+.content-cards {
+  margin: 50px;
+  
+ 
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+   
+  }
+  
+  .example-container > * {
+    width: 80%;
+  } 
+ .example-full-width {
+  width: 100%;
+}
+  
+  

@@ -1,0 +1,103 @@
+
+<mat-tab-group>
+    <mat-tab  *ngIf="tab==1" label="Menus List">
+
+          <mat-card *ngFor= "let menu of allMenus" class="content-cards"> 
+              <mat-card-title>{{menu.menuName}}</mat-card-title>
+              <mat-card-content>
+                <p>Menu Type:{{menu.menuType}}</p>
+                <p>Price:{{menu.price}} lei</p> 
+                <p> {{menu.description}}</p> 
+              </mat-card-content>
+              <p align="right">
+                  <button mat-fab  color="primary"  type="button" (click)="tab=2" (click)="loadMenuToEdit(menu.id)" ><i class="material-icons">edit</i></button>
+                  <button mat-fab  color="warn"  type="button" (click)="deleteMenu(menu.id)"> <i class="material-icons">delete</i></button>
+               </p>
+            </mat-card>
+
+    </mat-tab>
+    <mat-tab  *ngIf="tab==1" label="Add Menu">
+       
+  
+          <p> Create New Menu</p> 
+     
+      <mat-card>
+        <mat-card-content  class="example-container">
+          
+            <form  [formGroup]="menuForm" class="example-container" (ngSubmit)="onMenuFormSubmit(menuForm.value)">
+                 <mat-form-field  [ngClass]="{'has-error': menuNameMessage}">
+                  <input matInput class="form-control"  id="menuNameId" type="text" 
+                  placeholder="Menu Name" formControlName="menuName" >
+                  <mat-error *ngIf="menuNameMessage">
+                    {{menuNameMessage}}
+                  </mat-error>
+                </mat-form-field>
+                <br>
+               <mat-form-field >
+                  <input matInput class="form-control"  id="menuTypeId" type="text" 
+                  placeholder="Menu Type"
+                  formControlName="menuType" >
+                </mat-form-field>
+          
+                <br>
+                <mat-form-field >
+                    <input matInput placeholder="Price" formControlName="price" type="text" >
+                  </mat-form-field>
+                  <br>
+                  <mat-form-field >
+                    <textarea matInput placeholder="Description" formControlName="description" type="text" ></textarea>
+                  </mat-form-field>
+                 
+                  <br>
+                  <br>
+                  <p align="right">
+                  <button   mat-button color="accent" [disabled]="!menuForm.valid" *ngIf="!menuIdToUpdate" >Create</button>  
+                </p>
+              </form>
+             
+      </mat-card-content>
+      </mat-card>
+      <br>
+    </mat-tab>
+
+    <mat-tab *ngIf="tab==2" label="Edit Menu">
+
+      <p> 
+          Update Menu for Id: {{menuIdToUpdate}}
+      </p>
+      <mat-card>
+        <mat-card-content>
+          
+            <form  [formGroup]="menuForm"   (ngSubmit)="onMenuFormSubmit(menuForm.value)">
+                <mat-form-field>
+                  <input matInput class="form-control"  id="menuNameId" type="text" 
+                  placeholder="Menu Name"
+                  formControlName="menuName" required>
+                </mat-form-field>
+               
+                <mat-form-field>
+                  <input matInput class="form-control"  id="menuTypeId" type="text" 
+                  placeholder="Menu Type"
+                  formControlName="menuType" required>
+                </mat-form-field>
+                <br>
+                <mat-form-field >
+                    <input matInput placeholder="Price" formControlName="price" type="text" required >
+                  </mat-form-field>
+                 
+                  <mat-form-field>
+                    <textarea matInput placeholder="Description" formControlName="description" type="text" required></textarea>
+                  </mat-form-field>
+                  <br> 
+                  <button  mat-button color="accent"   [disabled]="!menuForm.valid" >Update</button>  
+                  <button  mat-button color="accent" type="button" (click)= "tab=1" (click)="backToCreateMenu()">Go back</button>
+         
+              </form>
+      </mat-card-content>
+      </mat-card>
+      <br>
+
+    </mat-tab>
+  </mat-tab-group>
+
+

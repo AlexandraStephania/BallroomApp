@@ -1,0 +1,117 @@
+
+<div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
+      
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+      
+          <!-- Id Column -->
+          <ng-container matColumnDef="Id">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let ballroom"> {{ballroom.id}} </mat-cell>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let ballroom"> <a [routerLink]="['/ballroom', ballroom.id]">{{ballroom.ballroomName}}</a> </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Contact">
+                <mat-header-cell *matHeaderCellDef> Contact </mat-header-cell>
+                <mat-cell *matCellDef="let ballroom">
+                        <div *ngFor= "let contact of ballroom.contacts">
+                                {{contact.telephone}}
+                             </div>
+                </mat-cell>
+         </ng-container>
+          
+           <!-- Edit Column -->
+           <ng-container matColumnDef="Edit">
+                <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+                <mat-cell *matCellDef="let ballroom"> 
+                    <button   mat-icon-button color="primary"  type="button"
+                     [routerLink]="['/ballroom', ballroom.id, 'edit']"> <i class="material-icons">edit</i></button>   
+                </mat-cell>
+          </ng-container>
+          
+           <!-- Name Column -->
+           <ng-container matColumnDef="Delete">
+                <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+                <mat-cell *matCellDef="let ballroom"> 
+                        <button   mat-icon-button  color="warn"  type="button" 
+                        (click)="deleteBallroom(ballroom.id)"> <i class="material-icons">delete</i></button>    
+                </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator 
+        [pageSize]="6"
+        [pageSizeOptions]="[5, 10, 25]">
+        </mat-paginator>
+      </div>
+      <router-outlet></router-outlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div>
+                
+<mat-card  *ngFor= "let ballroom of allBallrooms " class="content-cards"> 
+    <mat-card-title><a [routerLink]="['/ballroom', ballroom.id]">{{ballroom.ballroomName}}</a></mat-card-title>
+    <mat-card-content>{{ballroom.description}}</mat-card-content>
+    
+    <div *ngFor= "let contact of ballroom.contacts">
+        {{contact.telephone}}
+        {{contact.address}}
+     </div>
+     <br/>
+
+   <div *ngFor= "let menu of ballroom.menus">
+       {{menu.menuName}}
+       {{menu.price}}
+    </div>
+    <br/>
+    
+    <div *ngFor = "let salon of ballroom.salons">
+        {{salon.salonName}}
+        {{salon.address}}
+        <br/>
+        <div *ngFor = "let request of salon.offerRequests">
+              {{request.type}}
+              {{request.eventDate}}
+        </div>
+    <br/>
+    </div>
+    <p align="right">
+
+    <button mat-fab  color="primary"  type="button" [routerLink]="['/ballroom', ballroom.id, 'edit']"> <i class="material-icons">edit</i></button>   
+    <button mat-fab  color="warn"  type="button" (click)="deleteBallroom(ballroom.id)"> <i class="material-icons">delete</i></button>
+    </p>
+
+</mat-card>
+</div>
+-->
+
+
+
+
+
+   

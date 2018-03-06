@@ -1,0 +1,47 @@
+<mat-card class="edit-card" >
+ <mat-card-title >
+   {{pageTitle}}
+ </mat-card-title>
+  <mat-card-content *ngIf="ballroom">
+      <form  [formGroup]="ballroomForm"   (ngSubmit)="saveBallroom(ballroomForm.value)">
+          
+        <mat-form-field>
+            <input matInput class="form-control"  id="ballroomNameId" type="text" 
+            placeholder="Ballroom Name"
+            formControlName="ballroomName" required
+            [(ngModel)]= ballroom.ballroomName>
+          </mat-form-field>
+
+          <mat-form-field>
+              <textarea matInput class="form-control"  id="ballroomDescription" type="text" 
+                        placeholder="Description"
+                       formControlName="description" required
+                       [(ngModel)]= ballroom.description></textarea>
+          </mat-form-field>
+          
+          <p>
+           Contact
+           <app-contact [contactBallroomId]="ballroom.id"></app-contact>
+          </p>
+          <p>
+            Menus
+          </p>
+          <p>
+            Salons
+          </p>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+      
+            <button mat-button color="accent" *ngIf="ballroom.id !== '0'" type="button" [routerLink]="['/ballroom', ballroom.id]">Back</button>
+            <button  mat-button color="primary" type="submit"  [disabled]="!ballroomForm.valid" >Save</button>
+           
+       
+      </form>
+  </mat-card-content>
+</mat-card>

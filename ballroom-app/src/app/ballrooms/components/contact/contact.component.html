@@ -1,0 +1,178 @@
+<div>
+<form  [formGroup]="contactForm"   (ngSubmit)="onContactFormSubmit(contactForm.value)">
+    <mat-form-field>
+        <span matPrefix>+ &nbsp;</span>
+      <input matInput class="form-control"  id="phoneId" type="tel" 
+      placeholder="Telephone"
+      formControlName="telephone" required>
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    
+    <mat-form-field >
+        <input matInput placeholder="Email" formControlName="email" required>
+      </mat-form-field>
+
+    <mat-form-field>
+      <input matInput class="form-control" id="addressId"  type="text"
+      placeholder="Address" formControlName="address" required>
+    </mat-form-field>
+    
+
+    <mat-form-field>
+        <input matInput class="form-control" id="siteId"  type="text"
+        placeholder="Web site" formControlName="site" required>
+      </mat-form-field>
+      
+      <button   mat-button color="accent"  >Create</button>  
+    
+  </form>
+  
+  <div *ngIf="editContacts">
+    <div *ngFor= "let contact of allContacts">
+      {{contact.telephone}}<br>
+      {{contact.address}}<br>
+      {{contact.email}}<br>
+      {{contact.site}}<br>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--
+    <mat-tab-group>
+        <mat-tab  *ngIf="tab==1" label="Contact List">
+            <mat-card *ngFor= "let contact of allContacts" class="content-cards"> 
+                <mat-card-content>
+                  {{contact.telephone}}<br>
+                  {{contact.address}}<br>
+                  {{contact.email}}<br>
+                  {{contact.site}}<br>
+                </mat-card-content>
+                <p align="right">
+                    <button mat-fab  color="primary"  type="button" (click)="tab=2" (click)="loadContactToEdit(contact.id)" ><i class="material-icons">edit</i></button>
+                    <button mat-fab  color="warn"  type="button" (click)="deleteContact(contact.id)"> <i class="material-icons">delete</i></button>
+                 </p>
+              </mat-card>
+
+          </mat-tab>
+   <mat-tab  *ngIf="tab==1" label="Add Contact">
+      <p> Create New Contact</p> 
+      <mat-card>
+          <mat-card-content  class="example-container">
+    <form  [formGroup]="contactForm"   (ngSubmit)="onContactFormSubmit(contactForm.value)">
+        <mat-form-field>
+            <span matPrefix>+ &nbsp;</span>
+          <input matInput class="form-control"  id="phoneId" type="tel" 
+          placeholder="Telephone"
+          formControlName="telephone" required>
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        
+        <mat-form-field >
+            <input matInput placeholder="Email" formControlName="email" required>
+          </mat-form-field>
+
+        <mat-form-field>
+          <input matInput class="form-control" id="addressId"  type="text"
+          placeholder="Address" formControlName="address" required>
+        </mat-form-field>
+        
+
+        <mat-form-field>
+            <input matInput class="form-control" id="siteId"  type="text"
+            placeholder="Web site" formControlName="site" required>
+          </mat-form-field>
+        
+          <br>
+          <br>
+          <p align="right">
+          <button   mat-button color="accent" *ngIf="!contactIdToUpdate" >Create</button>  
+        </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <br>
+</mat-tab>
+
+<mat-tab *ngIf="tab==2" label="Edit Contact">
+    
+          <p> 
+              Update contact for Id: {{contactIdToUpdate}}
+          </p>
+          <mat-card>
+            <mat-card-content>
+                <form  [formGroup]="contactForm"   (ngSubmit)="onContactFormSubmit(contactForm.value)">
+                    <mat-form-field>
+                        <span matPrefix>+ &nbsp;</span>
+                      <input matInput class="form-control"  id="phoneId" type="tel" 
+                      placeholder="Telephone"
+                      formControlName="telephone" required>
+                      <mat-icon matSuffix>mode_edit</mat-icon>
+                    </mat-form-field>
+                    
+                    <mat-form-field >
+                        <input matInput placeholder="Email" formControlName="email" required>
+                      </mat-form-field>
+            
+                    <mat-form-field>
+                      <input matInput class="form-control" id="addressId"  type="text"
+                      placeholder="Address" formControlName="address" required>
+                    </mat-form-field>
+                    
+            
+                    <mat-form-field>
+                        <input matInput class="form-control" id="siteId"  type="text"
+                        placeholder="Web site" formControlName="site" required>
+                      </mat-form-field>
+                    
+                      <br>
+                      <br>
+                      <p align="right">
+                          <button  mat-button color="accent" >Update</button>  
+                          <button  mat-button color="accent" type="button" (click)= "tab=1" (click)="backToCreateContact()">Go back</button>
+                    </p>
+                  </form>
+                  </mat-card-content>
+                  </mat-card>
+                  </mat-tab>
+</mat-tab-group>
+  
+-->

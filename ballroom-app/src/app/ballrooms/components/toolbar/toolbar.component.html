@@ -1,0 +1,38 @@
+
+<mat-toolbar color="accent" >
+  BallroomsBooker
+  <button  mat-icon-button routerLink="/ballrooms"> <mat-icon>home</mat-icon></button>
+  <span class="example-spacer"></span>
+  <mat-icon>search</mat-icon>
+  <form  >
+    <mat-form-field  class="example-full-width" >
+        <input  (keyup)="searchTerm$.next($event.target.value)" matInput  
+         [matAutocomplete]="auto">
+         <mat-autocomplete #auto="matAutocomplete">
+             <mat-option  *ngFor="let ballroom of results " >
+                    <p [routerLink]="['/ballroom', ballroom.id]">{{ballroom.ballroomName}}</p>
+             </mat-option>
+         </mat-autocomplete>
+    </mat-form-field>
+</form>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <button   mat-button routerLink="/ballrooms">Ballrooms List</button>
+    <br>
+    <button   mat-button routerLink="/ballroom/0/edit">New ballroom</button>
+    <br> 
+    <button   mat-button routerLink="/offer">Offer Request</button> 
+    <br>
+    <button   mat-button routerLink="/contact">Contact</button> 
+    <br>
+    <button   mat-button routerLink="/menus">Menus</button> 
+    <br>
+    <button   mat-button routerLink="/salons">Salons</button> 
+    <br>
+</mat-menu>
+</mat-toolbar>
+<div class="wrapper"  >
+        <router-outlet></router-outlet>
+</div>
